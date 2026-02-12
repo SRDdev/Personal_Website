@@ -6,13 +6,23 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 interface ExperienceItemProps {
     title: string;
     role: string;
+    date: string; // 1. Add this line to the interface
     children: React.ReactNode;
     collapsible?: boolean;
     link?: string;
     collapsedHeight?: string;
 }
 
-export function ExperienceItem({ title, role, children, collapsible = false, link, collapsedHeight = "max-h-20" }: ExperienceItemProps) {
+// 2. Add 'date' to the destructured props
+export function ExperienceItem({ 
+    title, 
+    role, 
+    date, 
+    children, 
+    collapsible = false, 
+    link, 
+    collapsedHeight = "max-h-20" 
+}: ExperienceItemProps) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
@@ -31,7 +41,11 @@ export function ExperienceItem({ title, role, children, collapsible = false, lin
                         </a>
                     )}
                 </div>
-                <span className="text-sm text-gray-400 dark:text-gray-500">{role}</span>
+                {/* 3. Display the date alongside the role */}
+                <div className="flex flex-col sm:items-end">
+                    <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">{role}</span>
+                    <span className="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500">{date}</span>
+                </div>
             </div>
 
             <div className={`relative max-w-xl text-sm leading-relaxed text-gray-500 dark:text-gray-400 transition-all duration-300 ${!isExpanded && collapsible ? `${collapsedHeight} overflow-hidden` : ""}`}>

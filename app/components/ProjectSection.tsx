@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ProjectCard } from "../components/ProjectCard"; // Adjust path if needed
+import { ProjectCard } from "../components/ProjectCard"; 
 
-// Map your GitHub repo names to your local file names
 const LOCAL_IMAGES: Record<string, string> = {
   "EchoSense": "/projects/echosense.svg",
   "HingFlow": "/projects/hingflow.svg",
@@ -14,14 +13,15 @@ const LOCAL_IMAGES: Record<string, string> = {
 
 const DEFAULT_SVG = "/projects/default.svg";
 
+// 1. UPDATED INTERFACE: This must match what you send to ProjectCard
 interface Repo {
   id: number;
   name: string;
   description: string;
-  stargazers_count: number;
-  forks_count: number;
+  stars: number;    // Changed from stargazers_count
+  forks: number;    // Changed from forks_count
   language: string;
-  html_url: string;
+  link: string;     // Changed from html_url
   image: string;
 }
 
@@ -36,24 +36,23 @@ export function ProjectSection() {
         
         const featured = ["EchoSense", "HingFlow", "YouTube-Llama", "Neural-Translation", "PaliGemma"];
         
-        const formatted = data
-          .sort((a: any, b: any) => {
-             if (featured.includes(a.name)) return -1;
-             if (featured.includes(b.name)) return 1;
-             return b.stargazers_count - a.stargazers_count;
-          })
-          .map((repo: any) => ({
-            id: repo.id,
-            name: repo.name,
-            description: repo.description || "Experimental AI/ML project.",
-            stars: repo.stargazers_count,
-            forks: repo.forks_count,
-            language: repo.language || "Python",
-            html_url: repo.html_url,
-            link: repo.html_url,
-            // LOGIC: Use local SVG if exists, otherwise use default.svg
-            image: LOCAL_IMAGES[repo.name] || DEFAULT_SVG
-          }));
+        const formatted: Repo[] = data
+        .sort((a: any, b: any) => {
+          if (featured.includes(a.name)) return -1;
+          if (featured.includes(b.name)) return 1;
+          return b.stargazers_count - a.stargazers_count;
+        })
+        .map((repo: any) => ({
+          id: repo.id,
+          name: repo.name,
+          description: repo.description || "Experimental AI/ML project.",
+          // 2. MAPPING: Renaming keys to match the new Repo interface
+          stars: repo.stargazers_count,  
+          forks: repo.forks_count,       
+          link: repo.html_url,           
+          language: repo.language || "Python",
+          image: LOCAL_IMAGES[repo.name] || DEFAULT_SVG
+        }));
 
         setProjects(formatted);
       } catch (e) {
@@ -74,13 +73,12 @@ export function ProjectSection() {
           className="flex w-max animate-infinite-scroll hover:[animation-play-state:paused]"
           style={{ animationDuration: "90s" }} 
         >
-          {/* Main Loop */}
           <div className="flex gap-8 py-4 pr-8">
             {projects.map((project) => (
+              // 3. SUCCESS: {...project} now works because the types match exactly
               <ProjectCard key={project.id} {...project} />
             ))}
           </div>
-          {/* Seamless Loop Clone */}
           <div className="flex gap-8 py-4 pr-8">
             {projects.map((project) => (
               <ProjectCard key={`${project.id}-clone`} {...project} />

@@ -1,2 +1,3 @@
 .appmodconfig
 node_modules
+.next/
