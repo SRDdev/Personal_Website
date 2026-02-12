@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="HingFlow project preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#061b12" />
+      <stop offset="1" stop-color="#0b1020" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#34d399" />
+      <stop offset="1" stop-color="#22c55e" />
+    </linearGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18" result="blur" />
+      <feColorMatrix in="blur" type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 0.35 0" />
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="250" cy="150" r="120" fill="#34d399" opacity="0.14" filter="url(#softGlow)" />
+  <circle cx="980" cy="500" r="150" fill="#22c55e" opacity="0.12" filter="url(#softGlow)" />
+
+  <!-- Flow diagram -->
+  <g fill="none" stroke="url(#accent)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+    <rect x="250" y="250" width="220" height="120" rx="22" />
+    <rect x="520" y="180" width="220" height="120" rx="22" opacity="0.85" />
+    <rect x="520" y="330" width="220" height="120" rx="22" opacity="0.85" />
+    <rect x="790" y="255" width="220" height="120" rx="22" />
+
+    <path d="M470 310 H520" />
+    <path d="M740 240 H790" />
+    <path d="M740 390 H790" />
+    <path d="M630 300 V330" opacity="0.75" />
+
+    <path d="M505 310 l-18 -12 v24 z" fill="#22c55e" stroke="none" />
+    <path d="M775 300 l-18 -12 v24 z" fill="#22c55e" stroke="none" />
+    <path d="M775 370 l-18 -12 v24 z" fill="#22c55e" stroke="none" />
+  </g>
+
+  <text x="90" y="520" fill="#e5e7eb" font-size="64" font-weight="700"
+    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial">
+    HingFlow
+  </text>
+  <text x="90" y="575" fill="#9ca3af" font-size="26"
+    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial">
+    Pipelines • orchestration • tooling
+  </text>
+</svg>
