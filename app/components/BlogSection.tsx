@@ -90,9 +90,10 @@ export function BlogSection() {
 
   return (
     <div className="mb-16 w-full text-justify">
-      <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+      <h2 className="mb-6 text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors duration-200">
         Writings & Blogs
       </h2>
+
       <p className="mb-8 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
         I host my thoughts on{" "}
         <a
@@ -121,7 +122,7 @@ export function BlogSection() {
               <img
                 src={post.image}
                 alt={post.title}
-                className="h-full w-full object-cover transition-all duration-500 grayscale group-hover:grayscale-0 group-hover:scale-105"
+                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
               />
               
               {/* Optional: "Read" Badge overlay (mimicking the play button feel subtly) */}

@@ -3,6 +3,11 @@
 import { Github, Star, GitFork, Code2, ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 
+type ProjectLink = {
+  label: string;
+  href: string;
+};
+
 interface ProjectCardProps {
   name: string;
   description: string;
@@ -11,17 +16,25 @@ interface ProjectCardProps {
   language: string;
   link: string;
   image: string;
+  links?: ProjectLink[];
 }
 
-export function ProjectCard({ name, description, stars, forks, language, link, image }: ProjectCardProps) {
+export function ProjectCard({ name, description, stars, forks, language, link, image, links }: ProjectCardProps) {
   const [imgSrc, setImgSrc] = useState(image);
 
   return (
-    <a 
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
+      role="link"
+      tabIndex={0}
+      onClick={() => window.open(link, "_blank", "noopener,noreferrer")}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          window.open(link, "_blank", "noopener,noreferrer");
+        }
+      }}
       className="group block w-[300px] shrink-0 snap-start cursor-pointer sm:w-[400px]"
+      aria-label={`Open ${name} on GitHub`}
     >
       <div className="mb-4 overflow-hidden rounded-xl border border-gray-100 dark:border-gray-900 bg-gray-50 dark:bg-gray-950 shadow-sm transition-all duration-500 hover:shadow-md">
         <div
@@ -64,11 +77,28 @@ export function ProjectCard({ name, description, stars, forks, language, link, i
           <span className="line-clamp-2 leading-tight">{name}</span>
           <ArrowUpRight className="shrink-0 h-4 w-4 mt-1 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1" />
         </h3>
+
+        {links && links.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="rounded-full bg-gray-100 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-gray-500 hover:text-black dark:bg-zinc-800/50 dark:text-gray-300 dark:hover:text-white transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+        )}
         
         <p className="line-clamp-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
           {description}
         </p>
       </div>
-    </a>
+    </div>
   );
 }

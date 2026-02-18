@@ -6,14 +6,13 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 interface ExperienceItemProps {
     title: string;
     role: string;
-    date: string; // 1. Add this line to the interface
+    date: string;
     children: React.ReactNode;
     collapsible?: boolean;
     link?: string;
     collapsedHeight?: string;
 }
 
-// 2. Add 'date' to the destructured props
 export function ExperienceItem({ 
     title, 
     role, 
@@ -26,7 +25,8 @@ export function ExperienceItem({
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <div className="group">
+        // Added w-full here to ensure the container spans full width
+        <div className="group w-full"> 
             <div className="mb-2 flex flex-col justify-between sm:flex-row sm:items-baseline">
                 <div className="flex items-center gap-2">
                     <span className="font-medium text-black dark:text-white">{title}</span>
@@ -41,14 +41,14 @@ export function ExperienceItem({
                         </a>
                     )}
                 </div>
-                {/* 3. Display the date alongside the role */}
                 <div className="flex flex-col sm:items-end">
                     <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">{role}</span>
                     <span className="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500">{date}</span>
                 </div>
             </div>
 
-            <div className={`relative max-w-xl text-sm leading-relaxed text-gray-500 dark:text-gray-400 transition-all duration-300 ${!isExpanded && collapsible ? `${collapsedHeight} overflow-hidden` : ""}`}>
+            {/* CHANGED: Removed 'max-w-xl' and added 'w-full' */}
+            <div className={`relative w-full text-sm leading-relaxed text-gray-500 dark:text-gray-400 transition-all duration-300 ${!isExpanded && collapsible ? `${collapsedHeight} overflow-hidden` : ""}`}>
                 {children}
                 {collapsible && !isExpanded && (
                     <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white dark:from-black to-transparent" />

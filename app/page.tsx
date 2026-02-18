@@ -16,6 +16,7 @@ import { PomodoroTimer } from "./components/PomodoroTimer";
 import { NeuralNetworkSim } from "./components/NeuralNetworkSim";
 
 import { getMarkdownContent } from "./data/content";
+import Link from "next/link";
 import { ResearchItem } from "./components/ResearchItem";
 import { BlogSection } from "./components/BlogSection";
 import { ProjectSection } from "./components/ProjectSection";
@@ -158,7 +159,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="flex w-full max-w-2xl flex-col items-start text-justify px-4 sm:px-0"
+            className="flex w-full max-w-5xl flex-col items-start text-justify px-4 sm:px-0"
           >
             <pre
               className="w-full whitespace-pre-wrap font-mono text-sm leading-relaxed text-black dark:text-gray-300 selection:bg-black dark:selection:bg-white selection:text-white dark:selection:text-black antialiased"
@@ -175,35 +176,54 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="flex w-full max-w-2xl flex-col items-center text-center"
+            className="flex w-full max-w-5xl flex-col items-center text-center"
           >
             {/* Profile Image - Easter Egg Trigger */}
-            <button
+            {/* <button
               onClick={() => setShowEasterEgg(!showEasterEgg)}
               className="group relative mb-2 h-40 w-40 grayscale filter sm:h-56 sm:w-56 overflow-hidden cursor-pointer transition-all duration-500 hover:grayscale-0 active:scale-95"
               aria-label="Toggle Aura Mode"
             >
               <Image
-                src={me_image} // User's photo
+                src={me_image}
                 alt="Profile"
                 fill
                 className={`object-contain transition-all duration-700 ${showEasterEgg ? 'grayscale-0 scale-105' : 'grayscale'}`}
                 priority
               />
               
-              {/* Bottom Fade (Gradient to Top) */}
               <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
               
-              {/* Top Fade (Gradient to Bottom) */}
               <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
               
-              {/* Left Fade (Gradient to Right) */}
               <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
-              
-              {/* Right Fade (Gradient to Left) */}
+            
               <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
 
-              {/* Subtle Glow on Hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_20px_rgba(59,130,246,0.3)] rounded-full pointer-events-none" />
+            </button> */}
+            {/* Profile Image - Easter Egg Trigger */}
+            <button
+              onClick={() => setShowEasterEgg(!showEasterEgg)}
+              className="group relative mb-2 h-56 w-56 sm:h-72 sm:w-72 overflow-hidden cursor-pointer transition-all duration-500 active:scale-95 filter grayscale hover:grayscale-0"
+              aria-label="Toggle Aura Mode"
+            >
+              <Image
+                src={me_image}
+                alt="Profile"
+                fill
+                className={`object-contain transition-all duration-700 ${showEasterEgg ? 'scale-105' : ''}`}
+                priority
+              />
+
+            <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
+              
+              <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
+              
+              <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
+            
+              <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
+              
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_20px_rgba(59,130,246,0.3)] rounded-full pointer-events-none" />
             </button>
 
@@ -261,20 +281,21 @@ export default function Home() {
 
             <div className="w-full space-y-4 text-justify text-base leading-relaxed text-gray-600 dark:text-gray-400 sm:text-lg md:text-xl">
               <p>
-                A Machine Learning Engineer and <a href="https://en.wikipedia.org/wiki/Deep_learning" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">Deep Learning Researcher</a> specializing in Multimodal AI, Generative AI, and building accessible technology.
+                A Machine Learning Engineer and <span className="font-medium text-black dark:text-white">Deep Learning Researcher</span> specializing in Multimodal AI, Generative AI, and building accessible technology.
               </p>
+              
               <p>
-                An <a href="https://en.wikipedia.org/wiki/Artificial_intelligence_for_social_good" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">AI advocate</a> who bridges the gap between advanced research and real-world impact, dedicated to empowering lives through intelligent solutions.
+                An <span className="font-medium text-black dark:text-white">AI advocate</span> who bridges the gap between advanced research and real-world impact. I am fortunate enough to work with and get mentored by <a href="https://www.linkedin.com/in/dr-amitava-das-78348022/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">Dr. Amitava Das</a>, <a href="https://www.linkedin.com/in/vasu-sharma55/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">Vasu Sharma</a>, <a href="https://www.linkedin.com/in/amanc/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">Aman Chadha</a>, and <a href="https://www.linkedin.com/in/vinija/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">Vinija Jain</a>.
               </p>
             </div>
-
             <NeuralNetworkSim />
 
 
             {/* Experience Section */}
-            <div className="mb-16 w-full text-justify leading-relaxed">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                Experience
+            {/* Experience Section */}
+            <div className="mb-16 w-full max-w-none text-justify leading-relaxed">
+              <h2 className="mb-6 text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors duration-200">
+              Experience
               </h2>
 
               <div className="space-y-12">
@@ -286,7 +307,7 @@ export default function Home() {
                   collapsible={true}
                   link="https://www.techolution.com/"
                 >
-                  <div className="space-y-2">
+                  <div className="w-full max-w-none space-y-2">
                     <p>
                       Lead the development of end-to-end AI systems for Embodied AI,
                       integrating computer vision, kinematics, and real-time inference backends.
@@ -319,7 +340,7 @@ export default function Home() {
                   collapsible={true}
                   link=""
                 >
-                  <div className="space-y-2">
+                  <div className="w-full max-w-none space-y-2">
                     <p>
                       Engaged in research on computer vision, AI detectability, and LLM
                       hallucination, focusing on watermarking techniques and provenance layers.
@@ -345,7 +366,7 @@ export default function Home() {
                   collapsible={true}
                   link=""
                 >
-                  <div className="space-y-2">
+                  <div className="w-full max-w-none space-y-2">
                     <p>
                       Developed a <span className="font-medium">Stutter Detection</span>
                       system utilizing Wav2Vec2 and Agnostic BERT to detect stuttering
@@ -366,7 +387,7 @@ export default function Home() {
                   collapsible={true}
                   link=""
                 >
-                  <div className="space-y-2">
+                  <div className="w-full max-w-none space-y-2">
                     <p>
                       Led the Microsoft Learn Student Club at VIIT Pune, fostering a strong
                       technical learning community.
@@ -385,7 +406,7 @@ export default function Home() {
                   collapsible={true}
                   link=""
                 >
-                  <div className="space-y-2">
+                  <div className="w-full max-w-none space-y-2">
                     <p>
                       Built an end-to-end system using open-source deep learning models to
                       generate contextually relevant titles for millions of Instagram
@@ -405,9 +426,10 @@ export default function Home() {
 
             {/* Education Section */}
             <div className="mb-16 w-full text-justify">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                Education
-              </h2>
+              <h2 className="mb-6 text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors duration-200">
+              Education
+            </h2>
+
               <div className="space-y-12">
                 <ExperienceItem
                   title="Vishwakarma Institute of Information Technology"
@@ -446,9 +468,10 @@ export default function Home() {
             {/* Research Publications Section */}
             <div className="mb-16 w-full text-justify">
               <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                <h2 className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                <h2 className="text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-black dark:hover:text-white">
                   Research Publications
                 </h2>
+
                 <div className="text-xs font-medium text-gray-500 dark:text-gray-400">
                   <span className="mr-3">H-Index: 3</span>
                   <span>Total Citations: 21+</span>
@@ -456,7 +479,6 @@ export default function Home() {
               </div>
 
               <div className="space-y-10">
-                
                 <ResearchItem
                   title="Assistance Platform for Visually Impaired Person using Image Captioning"
                   venue="Indian Patent Office"
@@ -465,84 +487,41 @@ export default function Home() {
                   tags={["Patent Granted", "Computer Vision"]}
                   link=""
                 >
-                   <p>
-                      Invented a real-time multimodal video narration platform designed to assist visually impaired individuals by converting visual data into descriptive audio, enhancing accessibility through computer vision technology. (Patent No. 202321004399)
-                   </p>
+                  <p>
+                    Invented a real-time multimodal video narration platform designed to assist visually impaired individuals by converting visual data into descriptive audio, enhancing accessibility through computer vision technology. (Patent No. 202321004399)
+                  </p>
                 </ResearchItem>
 
                 <ResearchItem
-                  title="Peccavi: Visual Paraphrase Attack Safe and Distortion Free Image Watermarking"
+                  title="PECCAVI: Visual Paraphrase Attack Safe and Distortion Free Image Watermarking"
                   venue="arXiv Preprint"
                   date="2025"
                   authors="S Dixit, A Aziz, S Bajpai, V Sharma, A Chadha, V Jain, A Das"
                   tags={["GenAI", "Security"]}
                   link="https://arxiv.org/abs/2506.22960"
                 >
-                   <p>
-                      Proposed a novel watermarking technique for AI-generated images that remains robust against "visual paraphrase" attacks—subtle distortions that evade traditional detection—while maintaining zero visual distortion in the source media.
-                   </p>
+                  <p>
+                    Proposed a novel watermarking technique for AI-generated images that remains robust against &quot;visual paraphrase&quot; attacks—subtle distortions that evade traditional detection—while maintaining zero visual distortion in the source media.
+                  </p>
                 </ResearchItem>
+              </div>
 
-                <ResearchItem
-                  title="The Visual Counter Turing Test (VCT²): A Benchmark for Evaluating AI-Generated Image Detection"
-                  venue="Proceedings of the 14th IJCNLP"
-                  date="2025"
-                  authors="N Imanpour, A Borah, S Bajpai, S Dixit, et al."
-                  tags={["Benchmarking", "Deep Learning"]}
-                  link=""
+              <div className="mt-8">
+                <Link
+                  href="/research"
+                  className="text-xs font-medium text-gray-500 dark:text-gray-400 underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors"
                 >
-                   <p>
-                      Introduced the Visual AI Index (V_AI) and a comprehensive benchmark for evaluating the state of AI-generated image detection, identifying critical gaps in current detection pipelines against sophisticated generative models.
-                   </p>
-                </ResearchItem>
-
-                <ResearchItem
-                  title="Wave-Former: Lag Removing Univariate Long Time Series Forecasting Transformer"
-                  venue="Ocean Engineering (Elsevier), Vol 312"
-                  date="2024"
-                  authors="Shreyas Dixit, Pradnya Dixit"
-                  tags={["Transformers", "Time-Series"]}
-                  link=""
-                >
-                   <p>
-                      Designed a specialized Transformer architecture to eliminate phase shift errors (lag) in long-horizon ocean wave forecasting. The model significantly outperforms traditional forecasting methods in chaotic natural systems.
-                   </p>
-                </ResearchItem>
-
-                <ResearchItem
-                  title="DeFactify 4: Counter Turing Test (Text & Image)"
-                  venue="Workshop Proceedings"
-                  date="2024"
-                  authors="R Roy, G Singh, A Aziz, S Dixit, et al."
-                  tags={["Workshop", "Dataset"]}
-                  link=""
-                >
-                   <p>
-                      Co-authored multiple foundational papers (Overview and Dataset releases) for the DeFactify 4 workshop, establishing comprehensive benchmarks for human vs. AI-generated text and image detection. Cited by 14+ across the series.
-                   </p>
-                </ResearchItem>
-
-                <ResearchItem
-                  title="Rethinking Data Integrity in Federated Learning: Are we ready?"
-                  venue="IEEE International WIE Conference"
-                  date="2022"
-                  authors="S Dixit, PN Mahalle, GR Shinde"
-                  tags={["Federated Learning", "Security"]}
-                  link="https://ieeexplore.ieee.org/document/10150535"
-                >
-                   <p>
-                      Investigated security vulnerabilities in distributed learning frameworks, specifically focusing on poisoning attacks and data tampering, and proposed protocols to ensure integrity in Federated Learning aggregation.
-                   </p>
-                </ResearchItem>
-
+                  See full research timeline &rarr;
+                </Link>
               </div>
             </div>
             {/* ---------------------------------------------------------------------- */}
             {/* Tech Stack Section */}
             <div className="mb-16 w-full text-justify">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+              <h2 className="mb-6 text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors duration-200">
                 Tech Stack
               </h2>
+
               <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
                 I specialize in bridging the gap between advanced research and production-grade infrastructure. While I am adaptable across the stack, I focus on architecting deterministic agentic systems and high-precision perception pipelines.
               </p>
@@ -551,7 +530,7 @@ export default function Home() {
             {/* ---------------------------------------------------------------------- */}
             {/* Recommendations by Clients Section */}
             <div className="mb-16 w-full text-justify">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+              <h2 className="mb-6 text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors duration-200">
                 Recommendations
               </h2>
               <div className="space-y-8">
@@ -569,6 +548,21 @@ export default function Home() {
                     Shreyas possesses exceptional research and development skills. I have personally witnessed his passionate dedication and work ethic, seeing him dive deep into complex projects to deliver high-quality results. He approaches development with a level of commitment that truly stands out.
                   </p>
                 </div>
+
+                {/* Kartik Soni Recommendation */}
+                <div className="group border-l-2 border-gray-200 dark:border-gray-800 pl-6 transition-all hover:border-black dark:hover:border-white">
+                  <div className="mb-1">
+                    <span className="text-base font-semibold text-black dark:text-white">
+                      Kartik Soni
+                    </span>
+                  </div>
+                  <div className="mb-3 text-xs text-gray-400 dark:text-gray-500">
+                    Lead Robotics and IsaacSim Engineer @ Techolution | Developing AI Solutions for Robotics
+                  </div>
+                  <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                    I’ve had the pleasure of working with Shreyas for over a year and can confidently say he is an exceptional professional. He has a strong grasp of computer vision concepts and a genuine passion for research and exploring new ideas. From rapid prototyping to production-ready solutions and clear documentation, Shreyas consistently delivers high-quality work. He is reliable, skilled, and a valuable asset to any team.
+                  </p>
+                </div>
               </div>
             </div>
             {/* ---------------------------------------------------------------------- */}
@@ -580,18 +574,19 @@ export default function Home() {
 
             {/* Thing about me Section */}
             <div className="mb-16 w-full text-justify">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+              <h2 className="mb-6 text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors duration-200">
                 Life Outside Work
               </h2>
               <div className="space-y-6">
                 <p className="w-full text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-                  When I step away from the screen, I trade neural networks for race strategies. I’m a massive F1 enthusiast and a die-hard Manchester United supporter, always drawn to the high stakes, precision, and passion of competitive sports.
+                  When I’m not working, I’m usually watching Formula 1 or catching a Manchester United match. I love the intensity, the strategy, and the drama that comes with competitive sports — there’s something about it that’s just exciting every single time.
                 </p>
 
+
                 <div className="flex justify-center w-full">
-                  {/* 1. Increased max-width to 'max-w-2xl' for a wider container */}
+                  {/* Increased max-width for a wider container */}
                   <div 
-                    className="relative h-[350px] w-full max-w-2xl rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 grayscale hover:grayscale-0 transition-all duration-700 sm:h-[450px]" 
+                    className="relative h-[350px] w-full max-w-3xl rounded-3xl overflow-hidden border border-gray-200 dark:border-gray-800 grayscale hover:grayscale-0 transition-all duration-700 sm:h-[450px]" 
                   >
                     <Image
                       src="/casual.jpg"
@@ -604,8 +599,9 @@ export default function Home() {
                 </div>
 
                 <p className="w-full text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-                  I also love unwinding with the sharp wit of <em>Suits</em> (Harvey Specter is a personal favorite). But above all, I value real connections spending quality time with friends, whether we&apos;re debating the latest match or just hanging out, is where I find my true balance and recharge.
+                  I also enjoy winding down with a good TV show — Suits is definitely one of my favorites (Harvey Specter is hard not to like). But more than anything, I value spending time with friends. Whether it’s talking about football, sharing ideas, or just relaxing together, that’s what really helps me recharge.
                 </p>
+
               </div>
             </div>
 

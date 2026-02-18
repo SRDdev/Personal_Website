@@ -1,3 +1,5 @@
 .appmodconfig
 node_modules
-.next/
+/home/shreyas/Personal_Website/.next
+.next
+*.tsbuildinfo
