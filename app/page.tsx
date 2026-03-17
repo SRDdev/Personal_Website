@@ -299,11 +299,26 @@ export default function Home() {
               </h2>
 
               <div className="space-y-12">
+                <ExperienceItem
+                  title="GPU ML Engineer"
+                  role="Qualcomm, Hyderabad"
+                  date="March 2026 - Present"
+                  collapsible={true}
+                  link="https://www.qualcomm.com/"
+                >
+                  <div className="w-full max-w-none space-y-2">
+                    <p>
+                      Working on research and engineering required to accelerate LLM Inference on GPUs. 
+                      Focused on optimizing large-scale model deployment and enhancing hardware-accelerated 
+                      performance for next-generation edge intelligence.
+                    </p>
+                  </div>
+                </ExperienceItem>
 
                 <ExperienceItem
                   title="AI Engineer"
                   role="Techolution, Hyderabad"
-                  date="June 2024 - Present"
+                  date="June 2024 - Feb 2026"
                   collapsible={true}
                   link="https://www.techolution.com/"
                 >

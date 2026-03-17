@@ -3,122 +3,145 @@ export const getMarkdownContent = (time: string) => `# Shreyas Rajendra Dixit
 
 ## About
 
-A Machine Learning Engineer and [systems builder](https://en.wikipedia.org/wiki/Systems_engineering) with deep experience across computer vision, NLP, and distributed architecture.
+A **GPU Machine Learning Engineer** and [systems builder](https://en.wikipedia.org/wiki/Systems_engineering) working at the intersection of **AI research, large-scale model systems, and hardware-accelerated machine learning**.
 
-A [polymath](https://en.wikipedia.org/wiki/Polymath) who bridges the gap between rigorous academic research and shipping scalable, production-grade AI products.
-
-## Experience
-
-### Techolution
-**AI Engineer**
-[https://www.techolution.com/](https://www.techolution.com/)
-
-Leading ML development for Embodied AI initiatives, designing high-performance inference pipelines that integrate computer vision with real-world actuation.
-
-Developed an end-to-end AI pipeline achieving **97% task accuracy** and **2mm precision**, bridging the gap between deep learning models and physical deployment.
-
-Engineered the "AI-Hand Bartender" system and a video-based learning mechanism for extracting 6D pose data, enabling systems to learn complex manipulation tasks from demonstration.
-
-Explored Reinforcement Learning (RL) algorithms in NVIDIA Isaac Sim and built real-time camera calibration pipelines to ensure robust model performance in dynamic environments.
-
-### AI Institute of South Carolina (AIISC)
-**AI Researcher**
-[https://aiisc.ai/](https://aiisc.ai/)
-
-Conducting research at the intersection of computer vision, AI detectability, and watermarking techniques (Project PECCAVI).
-
-Co-authoring papers under Dr. Amitava Das to enhance AI system robustness and forensic integrity, focusing on the traceability of synthetic media.
-
-Serving as Associate Organizer for the Defactify 4.0 workshop at AAAI 2025, contributing to the global dialogue on AI fact-checking and misinformation.
-
-### Dassault Systèmes
-**Deep Learning Researcher**
-[https://www.3ds.com/](https://www.3ds.com/)
-
-Developed a novel Stutter Detection system using Wav2Vec2 and Agnostic BERT architectures.
-
-Trained and fine-tuned models on diverse Indian language datasets, achieving a **WER of 0.31**, significantly improving accessibility tools for speech-impaired users.
-
-## In Between These Experiences
-
-### The Builder's Arc
-
-I don't just train models; I build systems. My journey has been defined by a shift from simple scripts to complex, agentic architectures.
-
-It started with **EchoSense**, a real-time assistance platform for the visually impaired. It wasn't just an app; it was my first patent.
-
-Then came **HingFlow**, where I tackled the complexity of code-switching in NLP, building models that could understand the chaotic mix of Hindi and English used by millions.
-
-Most recently, I've been obsessed with **Agentic Systems**. At Techolution, I'm not just optimizing weights; I'm building autonomous systems. I'm designing architectures where "personal data" isn't just a log file, but the primary interface for an intelligent agent that executes tasks, not just suggests them.
-
-**Hard work and consistency pay off. Each project was a step forward, from simple classifiers to autonomous agents.**
-
-## Education
-
-### National Institute of Technology Hamirpur
-**Electrical Engineering**
-2022 - Present
-
-## Research Publications
-
-### Cross-Compatible Encryption Adapter for Securing Legacy Modbus Devices
-**2025 17th International Conference on COMmunication Systems and NETworks (COMSNETS)**
-Authors: Shreyas Dixit; T. S. Sreeram
-[https://doi.org/10.1109/COMSNETS63942.2025.10885597](https://doi.org/10.1109/COMSNETS63942.2025.10885597)
-
-**Abstract:**
-Supervisory Control and Data Acquisition (SCADA) systems manage critical infrastructure but are often vulnerable due to legacy protocols like Modbus. We proposed a hardware adapter that introduces modern encryption to these legacy loops without requiring expensive system overhauls. The solution is cost-efficient, cross-platform, and designed for easy retrofitting in industrial environments.
-
-### Peccavi: Visual Paraphrase Attack Safe Image Watermarking
-**arXiv Preprint**
-Authors: S Dixit, A Aziz, S Bajpai, V Sharma, A Chadha, V Jain, A Das
-[https://arxiv.org/abs/2506.22960](https://arxiv.org/abs/2506.22960)
-
-**Abstract:**
-A novel watermarking technique ensuring traceability of synthetic media against paraphrase attacks, enhancing the forensic integrity of GenAI content.
-
-## Tech Stack
-
-I'm a generalist at heart who can build with anything, but here's the core stack I've spent the most time with:
-
-**Core:** Python, C++, Go, TypeScript
-**AI/ML:** PyTorch, TensorFlow, Hugging Face, OpenCV, YOLO, NVIDIA Isaac Sim
-**Web & Cloud:** Next.js, React, Docker, Kubernetes, AWS, Google Cloud
-**Systems:** Linux, ROS2, Modbus, gRPC
-
-## Writings & Blogs
-
-I host my thoughts on [Medium](https://medium.com/@srddev) rather than building a custom site. Instead of overengineering, I prefer leveraging a mature platform to share insights on AI systems, product strategy, and technical architecture.
-
-## Library
-
-### Dev
-- **Deep Learning** by Ian Goodfellow
-- **Probabilistic Robotics** by Sebastian Thrun
-- **Linux Kernel Development** by Robert Love
-- **The Art of Electronics** by Paul Horowitz
-
-### Casual Reads
-- **The Almanack of Naval Ravikant** by Eric Jorgenson
-- **Zero to One** by Peter Thiel
-- **Deep Work** by Cal Newport
-- **Atomic Habits** by James Clear
-
-## Life Outside Work
-
-When I step away from the screen, I trade neural networks for race strategies. I’m a massive F1 enthusiast and a die-hard Manchester United supporter, always drawn to the high stakes, precision, and passion of competitive sports.
-
-I also love unwinding with the sharp wit of *Suits* (Harvey Specter is a personal favorite). But above all, I value real connections—spending quality time with friends, whether we're debating the latest match or just hanging out, is where I find my true balance and recharge.
-
-## Get in Touch
-
-Connect with me on [LinkedIn](https://www.linkedin.com/in/srddev/) or shoot an [email](mailto:shreyasrd31@gmail.com)
+My work focuses on building **high-performance AI infrastructure**, optimizing deep learning models for GPUs, and bridging advanced research with real-world deployments.
 
 ---
 
-**Links:**
-- GitHub: [https://github.com/SRDdev](https://github.com/SRDdev)
-- LinkedIn: [https://www.linkedin.com/in/srddev/](https://www.linkedin.com/in/srddev/)
-- Medium: [https://medium.com/@srddev](https://medium.com/@srddev)
-- Google Scholar: [https://scholar.google.com/citations?user=pl_o-VUAAAAJ](https://scholar.google.com/citations?user=pl_o-VUAAAAJ)
+## Experience
+
+### Qualcomm
+**GPU ML Engineer**  
+https://www.qualcomm.com/
+
+Working on research and engineering required to **accelerate large language model (LLM) inference on GPUs**.
+
+Focused on optimizing large-scale model deployment and improving hardware-accelerated performance for next-generation **edge AI systems**.
+
+---
+
+### Techolution
+**AI Engineer**  
+https://www.techolution.com/
+
+Led development of end-to-end AI systems for **Embodied AI**, integrating perception models with robotic manipulation pipelines.
+
+Built an AI pipeline for a dexterous robotic arm achieving **97% task accuracy** and **2mm precision** under challenging conditions such as fog and occlusion.
+
+Developed the **AI-Hand Bartender system**, enabling autonomous serving using sequence learning and object detection.
+
+Explored reinforcement learning algorithms in **NVIDIA Isaac Sim** and implemented real-time camera calibration pipelines for reliable physical deployment.
+
+---
+
+### Artificial Intelligence Institute of South Carolina (AIISC)
+**AI Researcher**  
+https://aiisc.ai/
+
+Conducting research in **AI detectability, multimodal computer vision, and watermarking techniques**.
+
+Developing **PECCAVI**, a visual paraphrase-resistant watermarking technique to ensure traceability and authenticity of synthetic media.
+
+Associate Organizer of **Defactify 4.0 Workshop at AAAI 2025** under the guidance of Dr. Amitava Das.
+
+---
+
+### Dassault Systèmes
+**Deep Learning Researcher**  
+https://www.3ds.com/
+
+Developed a **stutter detection system** using Wav2Vec2 and Agnostic BERT architectures.
+
+Trained models on Indian datasets achieving **WER of 0.31** and built an accessible front-end application for speech analysis.
+
+---
+
+## Education
+
+### Vishwakarma Institute of Information Technology
+**B.Tech — Electronics and Telecommunication**  
+2022 — 2025
+
+CGPA: **9.2 / 10**
+
+---
+
+## Research Publications
+
+### Assistance Platform for Visually Impaired Person using Image Captioning
+**Indian Patent Office — Granted Patent**
+
+Invented a multimodal platform that converts visual scenes into descriptive audio narration for visually impaired individuals.
+
+Patent No: **202321004399**
+
+---
+
+### PECCAVI: Visual Paraphrase Attack Safe Image Watermarking
+**arXiv Preprint**
+
+Authors: S Dixit, A Aziz, S Bajpai, V Sharma, A Chadha, V Jain, A Das  
+https://arxiv.org/abs/2506.22960
+
+A watermarking technique for AI-generated images that remains robust against **visual paraphrase attacks** while maintaining zero perceptible distortion.
+
+---
+
+## Tech Stack
+
+My work sits at the intersection of **AI research, high-performance systems, and production infrastructure**.
+
+**Languages**
+Python • C++ • Go • TypeScript
+
+**Machine Learning**
+PyTorch • TensorFlow • Hugging Face • OpenCV • YOLO
+
+**Simulation & Robotics**
+NVIDIA Isaac Sim • ROS
+
+**Infrastructure**
+Docker • Kubernetes • AWS • GCP
+
+**Systems**
+Linux • gRPC • Distributed Systems
+
+---
+
+## Writings & Blogs
+
+I write about AI systems, productivity, and engineering insights on **Medium**.
+
+https://medium.com/@srddev
+
+---
+
+## Life Outside Work
+
+When I step away from research and engineering, I usually switch gears to sports.
+
+I’m a massive **Formula 1 fan** and a **Manchester United supporter**, drawn to the strategy, precision, and intensity of competitive environments.
+
+I also enjoy watching *Suits* — Harvey Specter is hard not to admire — but most importantly I value spending time with friends and conversations that go far beyond technology.
+
+---
+
+## Get in Touch
+
+Connect with me on [LinkedIn](https://www.linkedin.com/in/srddev/)  
+or send an [email](mailto:shreyasrd31@gmail.com)
+
+---
+
+**Links**
+
+GitHub  
+https://github.com/SRDdev
+
+Medium  
+https://medium.com/@srddev
+
+Google Scholar  
+https://scholar.google.com/citations?user=pl_o-VUAAAAJ
 `;
