@@ -292,25 +292,27 @@ export default function Home() {
 
 
             {/* Experience Section */}
-            {/* Experience Section */}
             <div className="mb-16 w-full max-w-none text-justify leading-relaxed">
               <h2 className="mb-6 text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors duration-200">
               Experience
               </h2>
 
-              <div className="space-y-12">
+              <div className="space-y-10">
                 <ExperienceItem
                   title="GPU ML Engineer"
                   role="Qualcomm, Hyderabad"
                   date="March 2026 - Present"
                   collapsible={true}
                   link="https://www.qualcomm.com/"
+                  logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtzzJQ0hIwfLFQoMvLIIsbLiLmk8tAEBfBPA&s"
                 >
-                  <div className="w-full max-w-none space-y-2">
+                  <div className="w-full max-w-none space-y-3 text-gray-700 dark:text-gray-300">
                     <p>
-                      Working on research and engineering required to accelerate LLM Inference on GPUs. 
-                      Focused on optimizing large-scale model deployment and enhancing hardware-accelerated 
-                      performance for next-generation edge intelligence.
+                      Architecting and developing highly optimized compute kernels to accelerate Large Language Model (LLM) inference on Snapdragon Adreno GPUs.
+                      <br></br>
+                      <strong>Kernel Optimization:</strong> Designing low-level custom kernels (e.g., FlashAttention, custom GEMMs) to maximize hardware utilization and memory bandwidth for on-device AI.
+                      <br></br>
+                      <strong>Edge Inference:</strong> Implementing operator fusion, KV-cache management, and hardware-aware quantization to drastically improve tokens-per-second and energy efficiency.
                     </p>
                   </div>
                 </ExperienceItem>
@@ -321,6 +323,7 @@ export default function Home() {
                   date="June 2024 - Feb 2026"
                   collapsible={true}
                   link="https://www.techolution.com/"
+                  logo="https://pbs.twimg.com/profile_images/758763627889451009/MTlDLExv_400x400.jpg"
                 >
                   <div className="w-full max-w-none space-y-2">
                     <p>
@@ -349,11 +352,12 @@ export default function Home() {
                 </ExperienceItem>
 
                 <ExperienceItem
-                  title="AI Researcher"
+                  title="Visiting Researcher"
                   role="Artificial Intelligence Institute of South Carolina (AIISC)"
                   date="May 2024 - Present"
                   collapsible={true}
-                  link=""
+                  link="https://aiisc.ai/"
+                  logo="https://cdn.theorg.com/796c2116-15da-4c09-a802-68670aabdf22_medium.jpg"
                 >
                   <div className="w-full max-w-none space-y-2">
                     <p>
@@ -375,11 +379,12 @@ export default function Home() {
                 </ExperienceItem>
 
                 <ExperienceItem
-                  title="Deep Learning Researcher"
-                  role="Dassault Systèmes , Pune"
+                  title="Deep Learning Research Intern"
+                  role="Dassault Systèmes, Pune"
                   date="Nov 2023 - May 2024"
                   collapsible={true}
-                  link=""
+                  link="https://www.3ds.com/"
+                  logo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9NPxXSbFv9V_nJKBdK3-W7CEZQPEzOh841g&s"
                 >
                   <div className="w-full max-w-none space-y-2">
                     <p>
@@ -400,7 +405,8 @@ export default function Home() {
                   role="Microsoft Learn Student Club (MLSC), VIIT"
                   date="Nov 2022 - Aug 2024"
                   collapsible={true}
-                  link=""
+                  link="https://techcommunity.microsoft.com/t5/student-developer-blog/bg-p/StudentDeveloperBlog"
+                  logo="https://avatars.githubusercontent.com/u/81315956?s=280&v=4"
                 >
                   <div className="w-full max-w-none space-y-2">
                     <p>
@@ -419,7 +425,8 @@ export default function Home() {
                   role="BVIRAL"
                   date="June 2023 - Sept 2023"
                   collapsible={true}
-                  link=""
+                  link="https://bviral.com/"
+                  logo="https://cdn.theorg.com/9ffa2a96-b00f-46bd-8a30-1c461cb258ef_thumb.jpg"
                 >
                   <div className="w-full max-w-none space-y-2">
                     <p>
@@ -442,18 +449,19 @@ export default function Home() {
             {/* Education Section */}
             <div className="mb-16 w-full text-justify">
               <h2 className="mb-6 text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors duration-200">
-              Education
-            </h2>
+                Education
+              </h2>
 
-              <div className="space-y-12">
+              <div className="space-y-0">
                 <ExperienceItem
                   title="Vishwakarma Institute of Information Technology"
                   role="B.Tech"
                   date="Jan 2022 - May 2025"
                   link="https://www.viit.ac.in/"
                   collapsible={false}
+                  className="pb-4 mb-4" 
                 >
-                  <div className="space-y-2">
+                  <div className="space-y-0">
                      <p>CGPA: 9.2 / 10.0</p>
                      <p>B.Tech in Electronics and Telecommunication</p>
                   </div>
@@ -464,6 +472,7 @@ export default function Home() {
                   role="HSC, Computer Science"
                   date="2019 - 2021"
                   collapsible={false}
+                  className="pb-4 mb-4"
                 >
                    <p>Focused on Computer Science fundamentals.</p>
                 </ExperienceItem>
@@ -494,6 +503,21 @@ export default function Home() {
               </div>
 
               <div className="space-y-10">
+                {/* 2026 CVPR Publication */}
+                <ResearchItem
+                  title="PECCAVI: Visual Paraphrase Attack Safe and Distortion Free Image Watermarking"
+                  venue="CVPR"
+                  date="2026"
+                  authors="S Dixit, A Aziz, S Bajpai, V Sharma, A Chadha, V Jain, A Das"
+                  tags={["GenAI", "Security", "CVPR 2026"]}
+                  link="https://arxiv.org/abs/2506.22960"
+                >
+                  <p>
+                    Proposed a novel watermarking technique for AI-generated images that remains robust against &quot;visual paraphrase&quot; attacks—subtle distortions that evade traditional detection—while maintaining zero visual distortion in the source media.
+                  </p>
+                </ResearchItem>
+
+                {/* 2023 Patent */}
                 <ResearchItem
                   title="Assistance Platform for Visually Impaired Person using Image Captioning"
                   venue="Indian Patent Office"
@@ -504,19 +528,6 @@ export default function Home() {
                 >
                   <p>
                     Invented a real-time multimodal video narration platform designed to assist visually impaired individuals by converting visual data into descriptive audio, enhancing accessibility through computer vision technology. (Patent No. 202321004399)
-                  </p>
-                </ResearchItem>
-
-                <ResearchItem
-                  title="PECCAVI: Visual Paraphrase Attack Safe and Distortion Free Image Watermarking"
-                  venue="arXiv Preprint"
-                  date="2025"
-                  authors="S Dixit, A Aziz, S Bajpai, V Sharma, A Chadha, V Jain, A Das"
-                  tags={["GenAI", "Security"]}
-                  link="https://arxiv.org/abs/2506.22960"
-                >
-                  <p>
-                    Proposed a novel watermarking technique for AI-generated images that remains robust against &quot;visual paraphrase&quot; attacks—subtle distortions that evade traditional detection—while maintaining zero visual distortion in the source media.
                   </p>
                 </ResearchItem>
               </div>
