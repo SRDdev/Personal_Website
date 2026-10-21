@@ -15,6 +15,13 @@ interface BlogPost {
 // --- Fallback Data (Matches your provided Medium links) ---
 const FALLBACK_POSTS: BlogPost[] = [
   {
+    title: "Prefill vs. Decode: What an LLM Is Really Doing on the GPU",
+    excerpt: "A first-principles look at prefill, decode, KV caching, attention IO, and the CUDA kernels underneath LLM inference.",
+    date: "In progress",
+    image: "/blog/prefill-vs-decode/prefill-vs-decode-overview.png",
+    link: "/blog/prefill-vs-decode"
+  },
+  {
     title: "Gradients and Parameters: Monitoring Models at Scale",
     excerpt: "Breaking down the two key components of neural networks: parameters (the model's memory) and gradients (the learning signal).",
     date: "Aug 4, 2025",
@@ -50,10 +57,17 @@ export function BlogSection() {
   // --- Auto-Fetch Logic ---
   useEffect(() => {
     const fetchMediumPosts = async () => {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 5000);
+
       try {
         const res = await fetch(
-          "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@srddev"
+          "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@srddev",
+          { signal: controller.signal }
         );
+        if (!res.ok) {
+          throw new Error(`Medium feed request failed with ${res.status}`);
+        }
         const data = await res.json();
 
         if (data.status === "ok" && data.items.length > 0) {
@@ -78,10 +92,16 @@ export function BlogSection() {
               link: item.link,
             };
           });
-          setPosts(formattedPosts);
+          setPosts([
+            FALLBACK_POSTS[0],
+            ...formattedPosts.filter((post: BlogPost) => post.title !== FALLBACK_POSTS[0].title),
+          ]);
         }
-      } catch (error) {
-        console.error("Failed to fetch Medium posts, using fallback.", error);
+      } catch {
+        // The local fallback is intentional: the homepage must still work when
+        // the third-party RSS proxy is unavailable, blocked, or rate-limited.
+      } finally {
+        window.clearTimeout(timeout);
       }
     };
 

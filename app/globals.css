@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
+  --font-dm-sans: Arial, Helvetica, sans-serif;
 }
 
 .dark {
@@ -45,4 +46,12 @@ body {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.article-heading {
+  margin-bottom: 1rem;
+  font-size: 1.875rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--foreground);
 }
