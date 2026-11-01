@@ -15,6 +15,13 @@ interface BlogPost {
 // --- Fallback Data (Matches your provided Medium links) ---
 const FALLBACK_POSTS: BlogPost[] = [
   {
+    title: "Why Unused Data Makes GPU Kernels Fly",
+    excerpt: "A CUDA row-stride experiment that cut naive GEMM latency by 31.1% without changing the mathematical operation.",
+    date: "Nov 1, 2026",
+    image: "/blog/cuda-padding-experiment/title.png",
+    link: "/blog/cuda-padding-experiment"
+  },
+  {
     title: "Prefill vs. Decode: What an LLM Is Really Doing on the GPU",
     excerpt: "A first-principles look at prefill, decode, KV caching, attention IO, and the CUDA kernels underneath LLM inference.",
     date: "In progress",
@@ -51,6 +58,32 @@ const FALLBACK_POSTS: BlogPost[] = [
   }
 ];
 
+function extractImageUrl(html: unknown): string | undefined {
+  if (typeof html !== "string") {
+    return undefined;
+  }
+
+  const srcMatch = html.match(
+    /<(?:img|source)[^>]+(?:src|data-src)\s*=\s*["']([^"']+)["']/i
+  );
+  if (srcMatch?.[1]) {
+    return srcMatch[1].replace(/&amp;/g, "&");
+  }
+
+  const srcSetMatch = html.match(/srcset\s*=\s*["']([^"']+)["']/i);
+  return srcSetMatch?.[1]?.split(",")[0]?.trim().split(" ")[0];
+}
+
+function getMediumImage(item: any): string {
+  const candidates = [
+    typeof item.thumbnail === "string" ? item.thumbnail : undefined,
+    extractImageUrl(item.content),
+    extractImageUrl(item.description),
+  ];
+
+  return candidates.find((candidate) => candidate?.trim()) || "/projects/default.svg";
+}
+
 export function BlogSection() {
   const [posts, setPosts] = useState<BlogPost[]>(FALLBACK_POSTS);
 
@@ -72,13 +105,10 @@ export function BlogSection() {
 
         if (data.status === "ok" && data.items.length > 0) {
           const formattedPosts = data.items.map((item: any) => {
-            // Regex to find the first image in the content content
-            const imgMatch = item.content.match(/<img[^>]+src="([^">]+)"/);
-            // Use thumbnail, or extracted image, or a fallback
-            const image = item.thumbnail || (imgMatch ? imgMatch[1] : FALLBACK_POSTS[0].image);
-            
             // Strip HTML from description for a clean excerpt
-            const textContent = item.description.replace(/<[^>]*>?/gm, "").substring(0, 120) + "...";
+            const textContent = (item.description || "")
+              .replace(/<[^>]*>?/gm, "")
+              .substring(0, 120) + "...";
 
             return {
               title: item.title,
@@ -88,13 +118,17 @@ export function BlogSection() {
                 month: "short",
                 day: "numeric",
               }),
-              image: image,
+              image: getMediumImage(item),
               link: item.link,
             };
           });
+          const fetchedLinks = new Set(formattedPosts.map((post: BlogPost) => post.link));
           setPosts([
-            FALLBACK_POSTS[0],
-            ...formattedPosts.filter((post: BlogPost) => post.title !== FALLBACK_POSTS[0].title),
+            ...FALLBACK_POSTS.filter((post) => post.link.startsWith("/")),
+            ...formattedPosts,
+            ...FALLBACK_POSTS.filter(
+              (post) => post.link.startsWith("http") && !fetchedLinks.has(post.link)
+            ),
           ]);
         }
       } catch {
@@ -131,10 +165,10 @@ export function BlogSection() {
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
         {posts.map((post, index) => (
           <a
-            key={index}
+            key={`${post.link}-${index}`}
             href={post.link}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={post.link.startsWith("http") ? "_blank" : undefined}
+            rel={post.link.startsWith("http") ? "noopener noreferrer" : undefined}
             className="group block w-full space-y-3 cursor-pointer"
           >
             {/* 16:9 Image Container - Grayscale to Color Interaction */}
@@ -142,13 +176,20 @@ export function BlogSection() {
               <img
                 src={post.image}
                 alt={post.title}
-                className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                referrerPolicy="no-referrer"
+                onError={(event) => {
+                  event.currentTarget.onerror = null;
+                  event.currentTarget.src = "/projects/default.svg";
+                }}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               
               {/* Optional: "Read" Badge overlay (mimicking the play button feel subtly) */}
               <div className="absolute bottom-3 right-3 flex items-center gap-1 rounded-full bg-black/70 px-3 py-1 text-[10px] font-medium text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
                 <BookOpen className="h-3 w-3" />
-                <span>Read on Medium</span>
+                <span>{post.link.startsWith("http") ? "Read on Medium" : "Read article"}</span>
               </div>
             </div>
 

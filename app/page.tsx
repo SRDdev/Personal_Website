@@ -179,52 +179,18 @@ export default function Home() {
             className="flex w-full max-w-5xl flex-col items-center text-center"
           >
             {/* Profile Image - Easter Egg Trigger */}
-            {/* <button
-              onClick={() => setShowEasterEgg(!showEasterEgg)}
-              className="group relative mb-2 h-40 w-40 grayscale filter sm:h-56 sm:w-56 overflow-hidden cursor-pointer transition-all duration-500 hover:grayscale-0 active:scale-95"
-              aria-label="Toggle Aura Mode"
-            >
-              <Image
-                src={me_image}
-                alt="Profile"
-                fill
-                className={`object-contain transition-all duration-700 ${showEasterEgg ? 'grayscale-0 scale-105' : 'grayscale'}`}
-                priority
-              />
-              
-              <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
-              
-              <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
-              
-              <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
-            
-              <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
-
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_20px_rgba(59,130,246,0.3)] rounded-full pointer-events-none" />
-            </button> */}
-            {/* Profile Image - Easter Egg Trigger */}
             <button
               onClick={() => setShowEasterEgg(!showEasterEgg)}
-              className="group relative mb-2 h-56 w-56 sm:h-72 sm:w-72 overflow-hidden cursor-pointer transition-all duration-500 active:scale-95 filter grayscale hover:grayscale-0"
+              className="relative mb-2 h-56 w-56 overflow-hidden rounded-full transition-transform duration-500 active:scale-95 sm:h-72 sm:w-72"
               aria-label="Toggle Aura Mode"
             >
               <Image
                 src={me_image}
                 alt="Profile"
                 fill
-                className={`object-contain transition-all duration-700 ${showEasterEgg ? 'scale-105' : ''}`}
+                className={`object-cover transition-transform duration-700 ${showEasterEgg ? "scale-105" : ""}`}
                 priority
               />
-
-            <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
-              
-              <div className="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
-              
-              <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
-            
-              <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px] pointer-events-none" />
-              
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_20px_rgba(59,130,246,0.3)] rounded-full pointer-events-none" />
             </button>
 
             {/* Hero Text */}
@@ -497,8 +463,9 @@ export default function Home() {
                 </h2>
 
                 <div className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                  <span className="mr-3">H-Index: 3</span>
-                  <span>Total Citations: 21+</span>
+                  <span className="mr-3">Citations: 96 (since 2021: 96)</span>
+                  <span className="mr-3">H-Index: 5</span>
+                  <span>i10-Index: 1</span>
                 </div>
               </div>
 

@@ -39,9 +39,11 @@ export default function ResearchPage() {
           </p>
 
           <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-gray-500 dark:text-gray-400">
-            <span>H-Index: 3</span>
+            <span>Citations: 96 (since 2021: 96)</span>
             <span className="text-gray-300 dark:text-gray-700">•</span>
-            <span>Total Citations: 21+</span>
+            <span>H-Index: 5</span>
+            <span className="text-gray-300 dark:text-gray-700">•</span>
+            <span>i10-Index: 1</span>
             <span className="text-gray-300 dark:text-gray-700">•</span>
             <a
               href="https://scholar.google.com/citations?user=pl_o-VUAAAAJ"
