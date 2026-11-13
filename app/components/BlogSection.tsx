@@ -15,6 +15,13 @@ interface BlogPost {
 // --- Fallback Data (Matches your provided Medium links) ---
 const FALLBACK_POSTS: BlogPost[] = [
   {
+    title: "What One Quantization Thread Actually Does",
+    excerpt: "A first-principles CUDA walkthrough of FP32 to INT8 quantization, dequantization, numerical error, and RTX 3060 performance.",
+    date: "Nov 13, 2026",
+    image: "/blog/quantization-fundamentals/cover.svg",
+    link: "/blog/quantization-fundamentals"
+  },
+  {
     title: "Why Unused Data Makes GPU Kernels Fly",
     excerpt: "A CUDA row-stride experiment that cut naive GEMM latency by 31.1% without changing the mathematical operation.",
     date: "Nov 1, 2026",

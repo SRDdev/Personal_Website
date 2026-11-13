@@ -1,0 +1,23 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="32" fill="#09090B"/>
+  <path d="M0 690C250 610 360 760 610 665C845 576 1030 646 1215 560C1380 484 1488 514 1600 470V900H0V690Z" fill="#18181B"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="120" y="170" fill="#A1A1AA" font-size="28" font-weight="700" letter-spacing="7">GPU KERNEL ENGINEERING</text>
+    <text x="120" y="275" fill="white" font-size="76" font-weight="800">FP32  →  INT8</text>
+    <text x="120" y="350" fill="#A1A1AA" font-size="34">What one quantization thread actually does</text>
+    <rect x="120" y="470" width="310" height="150" rx="20" fill="#27272A" stroke="#52525B" stroke-width="3"/>
+    <text x="175" y="530" fill="#D4D4D8" font-size="25" font-weight="700">FP32 input</text>
+    <text x="175" y="580" fill="#60A5FA" font-size="34" font-weight="800">4 bytes</text>
+    <path d="M475 545H610" stroke="#71717A" stroke-width="8" stroke-linecap="round"/>
+    <path d="M590 520L620 545L590 570" stroke="#A1A1AA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="670" y="470" width="310" height="150" rx="20" fill="#172554" stroke="#3B82F6" stroke-width="3"/>
+    <text x="725" y="530" fill="#DBEAFE" font-size="25" font-weight="700">scale + round</text>
+    <text x="725" y="580" fill="#60A5FA" font-size="34" font-weight="800">clamp</text>
+    <path d="M1025 545H1160" stroke="#71717A" stroke-width="8" stroke-linecap="round"/>
+    <path d="M1140 520L1170 545L1140 570" stroke="#A1A1AA" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1220" y="470" width="260" height="150" rx="20" fill="#052E16" stroke="#22C55E" stroke-width="3"/>
+    <text x="1270" y="530" fill="#DCFCE7" font-size="25" font-weight="700">INT8 output</text>
+    <text x="1270" y="580" fill="#4ADE80" font-size="34" font-weight="800">1 byte</text>
+    <text x="120" y="790" fill="#71717A" font-size="25">RTX 3060 Laptop GPU  ·  CUDA 13.4  ·  256 threads/block</text>
+  </g>
+</svg>
