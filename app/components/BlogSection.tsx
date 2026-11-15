@@ -18,7 +18,7 @@ const FALLBACK_POSTS: BlogPost[] = [
     title: "What One Quantization Thread Actually Does",
     excerpt: "A first-principles CUDA walkthrough of FP32 to INT8 quantization, dequantization, numerical error, and RTX 3060 performance.",
     date: "Nov 13, 2026",
-    image: "/blog/quantization-fundamentals/cover.svg",
+    image: "/blog/quantization-fundamentals/Inference Acceleration.png",
     link: "/blog/quantization-fundamentals"
   },
   {
@@ -27,13 +27,6 @@ const FALLBACK_POSTS: BlogPost[] = [
     date: "Nov 1, 2026",
     image: "/blog/cuda-padding-experiment/title.png",
     link: "/blog/cuda-padding-experiment"
-  },
-  {
-    title: "Prefill vs. Decode: What an LLM Is Really Doing on the GPU",
-    excerpt: "A first-principles look at prefill, decode, KV caching, attention IO, and the CUDA kernels underneath LLM inference.",
-    date: "In progress",
-    image: "/blog/prefill-vs-decode/prefill-vs-decode-overview.png",
-    link: "/blog/prefill-vs-decode"
   },
   {
     title: "Gradients and Parameters: Monitoring Models at Scale",

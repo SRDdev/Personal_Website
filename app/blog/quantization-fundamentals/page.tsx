@@ -660,8 +660,10 @@ function DistributionQuantizationVisual() {
   );
 }
 
+
 function MemoryFootprintVisual() {
   const [parameters, setParameters] = useState(7);
+
   const formats = [
     ["FP32", 4, "bg-blue-500", "full precision"],
     ["FP16", 2, "bg-violet-500", "half precision"],
@@ -670,30 +672,118 @@ function MemoryFootprintVisual() {
   ] as const;
 
   return (
-    <section className="my-10 rounded-3xl border border-gray-200 bg-gradient-to-br from-slate-50 to-white p-5 shadow-sm dark:border-zinc-800 dark:from-zinc-950 dark:to-zinc-900 sm:p-7">
-      <div className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">Visual 01 · memory budget</p>
-          <h3 className="mt-2 text-xl font-bold text-gray-900 dark:text-white">Same parameters, very different traffic</h3>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-600 dark:text-gray-400">Choose a model size and compare the storage-only footprint. Runtime activations, KV cache, metadata, and workspaces are not included.</p>
+    <section className="my-8 sm:my-10 w-full min-w-0 overflow-hidden rounded-2xl sm:rounded-3xl border border-gray-200 bg-gradient-to-br from-slate-50 to-white p-4 shadow-sm dark:border-zinc-800 dark:from-zinc-950 dark:to-zinc-900 sm:p-7">
+
+      {/* Header */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+        <div className="min-w-0">
+          <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-blue-600 dark:text-blue-400">
+            Visual 01 · memory budget
+          </p>
+
+          <h3 className="mt-2 text-lg sm:text-xl font-bold leading-snug text-gray-900 dark:text-white">
+            Same parameters, very different traffic
+          </h3>
+
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-gray-600 dark:text-gray-400">
+            Choose a model size and compare the storage-only footprint.
+            Runtime activations, KV cache, metadata, and workspaces are not included.
+          </p>
         </div>
-        <output className="rounded-full bg-blue-100 px-3 py-1.5 font-mono text-sm font-bold text-blue-700 dark:bg-blue-950/60 dark:text-blue-300">{parameters}B parameters</output>
+
+        <output className="inline-flex w-fit shrink-0 items-center rounded-full bg-blue-100 px-3 py-1.5 font-mono text-xs sm:text-sm font-bold text-blue-700 dark:bg-blue-950/60 dark:text-blue-300">
+          {parameters}B parameters
+        </output>
       </div>
-      <input aria-label="Model parameter count in billions" className="mt-6 w-full cursor-pointer accent-blue-600" max="70" min="1" onChange={(event) => setParameters(Number(event.target.value))} type="range" value={parameters} />
-      <div className="mt-1 flex justify-between text-[11px] text-gray-400"><span>1B</span><span>70B</span></div>
-      <div className="mt-7 space-y-4">
-        {formats.map(([name, bytes, color, note]) => (
-          <div key={name} className="grid grid-cols-[72px_minmax(0,1fr)_92px] items-center gap-3 text-sm">
-            <div><p className="font-mono font-bold text-gray-900 dark:text-white">{name}</p><p className="text-[11px] text-gray-500">{note}</p></div>
-            <div className="h-8 rounded-full bg-gray-200/80 p-1 dark:bg-zinc-800"><div className={color + " flex h-full min-w-8 items-center rounded-full px-3 text-xs font-bold text-white transition-all duration-300"} style={{ width: (bytes / 4) * 100 + "%" }}>{bytes} {bytes === 1 ? "byte" : "bytes"} / value</div></div>
-            <p className="text-right font-mono font-bold tabular-nums text-gray-800 dark:text-gray-200">{parameters * bytes % 1 === 0 ? parameters * bytes : (parameters * bytes).toFixed(1)} GB</p>
-          </div>
-        ))}
+
+      {/* Slider */}
+      <div className="mt-6 rounded-xl bg-white/70 p-3 sm:bg-transparent sm:p-0 dark:bg-zinc-950/40 sm:dark:bg-transparent">
+        <input
+          aria-label="Model parameter count in billions"
+          className="block min-h-8 w-full cursor-pointer touch-pan-y accent-blue-600"
+          type="range"
+          min="1"
+          max="70"
+          step="1"
+          value={parameters}
+          onChange={(event) => setParameters(Number(event.target.value))}
+        />
+
+        <div className="mt-1 flex justify-between text-[11px] font-medium text-gray-400">
+          <span>1B</span>
+          <span>70B</span>
+        </div>
       </div>
-      <p className="mt-5 text-xs leading-5 text-gray-500 dark:text-gray-400">Quantization changes the storage contract. The GPU still needs metadata and conversion work, but fewer bytes travel through the memory hierarchy.</p>
+
+      {/* Memory comparison */}
+      <div className="mt-6 sm:mt-8 space-y-5 sm:space-y-6">
+        {formats.map(([name, bytes, color, note]) => {
+          const memory = parameters * bytes;
+          const percentage = (bytes / 4) * 100;
+
+          return (
+            <div
+              key={name}
+              className="min-w-0 space-y-2"
+            >
+              {/* Label and memory value */}
+              <div className="flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                    <span className="font-mono text-sm sm:text-base font-bold text-gray-900 dark:text-white">
+                      {name}
+                    </span>
+
+                    <span className="text-[11px] text-gray-500 dark:text-gray-400">
+                      {note}
+                    </span>
+                  </div>
+
+                  <p className="mt-0.5 text-[11px] text-gray-400">
+                    {bytes} {bytes === 1 ? "byte" : "bytes"} / value
+                  </p>
+                </div>
+
+                <div className="shrink-0 text-right">
+                  <p className="font-mono text-base sm:text-lg font-bold tabular-nums text-gray-800 dark:text-gray-100">
+                    {Number.isInteger(memory)
+                      ? memory
+                      : memory.toFixed(1)}{" "}
+                    <span className="text-xs font-semibold text-gray-500">
+                      GB
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              {/* Responsive memory bar */}
+              <div
+                className="h-5 sm:h-7 w-full overflow-hidden rounded-full bg-gray-200/80 p-1 dark:bg-zinc-800"
+                role="img"
+                aria-label={`${name}: ${percentage}% of FP32 storage`}
+              >
+                <div
+                  className={`${color} h-full min-w-1 rounded-full transition-all duration-300 ease-out`}
+                  style={{ width: `${percentage}%` }}
+                />
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Footer */}
+      <div className="mt-6 sm:mt-7 border-t border-gray-200 pt-4 dark:border-zinc-800">
+        <p className="text-xs leading-5 text-gray-500 dark:text-gray-400">
+          Quantization changes the storage contract. The GPU still needs
+          metadata and conversion work, but fewer bytes travel through
+          the memory hierarchy.
+        </p>
+      </div>
     </section>
   );
 }
+
 
 
 function MappingVisual() {
@@ -1125,36 +1215,67 @@ q = clamp(round(x / scale) + zero_point,
             </p>
           </section>
 
-          <section className="mt-12 rounded-2xl border border-blue-100 bg-blue-50/50 p-6 dark:border-blue-900/30 dark:bg-blue-950/20 sm:p-8">
-            <h2 className="mt-0 text-xl font-bold text-blue-900 dark:text-blue-300">Summary</h2>
-            <p className="mt-4 text-blue-800 dark:text-blue-300">
+          
+          <section className="mt-12 rounded-2xl border border-blue-100 bg-blue-50/50 p-5 sm:p-8 dark:border-blue-900/30 dark:bg-blue-950/20">
+            <h2 className="mt-0 text-xl font-bold text-blue-900 dark:text-blue-300">
+              Summary
+            </h2>
+
+            <p className="mt-4 leading-7 text-blue-800 dark:text-blue-300">
               A basic quantization kernel is a sequence of explicit operations: calculate an index, load a float, apply scale and zero-point, round, clamp, and store an integer code. Dequantization reverses the mapping approximately. Correctness depends on matching the numerical rules, while performance depends on launch geometry and memory access as well as arithmetic.
             </p>
-            <br></br>
-            <p className="mt-4 text-blue-800 dark:text-blue-300">
-            For further reading and a deeper understanding of quantization, including numerical representations, symmetric and asymmetric quantization, and practical applications in large language models, refer to these resources:
-            {" "}
-            <a
-              href="https://ngrok.com/blog/quantization"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-blue-600 underline underline-offset-4 dark:text-blue-400"
-            >
-              Quantization from the Ground Up by ngrok
-            </a>
-            {" "}and{" "}
-            <a
-              href="https://www.maartengrootendorst.com/blog/quantization/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-blue-600 underline underline-offset-4 dark:text-blue-400"
-            >
-              A Visual Guide to Quantization by Maarten Grootendorst
-            </a>.
-          </p>
-              <br></br>
-          
+
+            <p className="mt-4 leading-7 text-blue-800 dark:text-blue-300">
+              For further reading and a deeper understanding of quantization, including numerical representations, symmetric and asymmetric quantization, and practical applications in large language models, refer to these resources:{" "}
+              <a
+                href="https://ngrok.com/blog/quantization"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-blue-600 underline underline-offset-4 dark:text-blue-400"
+              >
+                Quantization from the Ground Up by ngrok
+              </a>
+              {" "}and{" "}
+              <a
+                href="https://www.maartengrootendorst.com/blog/quantization/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-blue-600 underline underline-offset-4 dark:text-blue-400"
+              >
+                A Visual Guide to Quantization by Maarten Grootendorst
+              </a>.
+            </p>
+
+            {/* GitHub Repository */}
+            <div className="mt-6 border-t border-blue-200 pt-5 dark:border-blue-900/50">
+              <p className="text-sm font-semibold text-blue-900 dark:text-blue-300">
+                Explore the implementation
+              </p>
+
+              <a
+                href="https://github.com/SRDdev/gpu-performance-lab/tree/master/GPU-Quantized-Kernels"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 flex w-full min-w-0 items-center gap-3 rounded-xl border border-blue-200 bg-white p-4 text-sm font-semibold text-blue-700 transition-colors hover:border-blue-400 hover:bg-blue-50 dark:border-blue-900/60 dark:bg-zinc-950 dark:text-blue-400 dark:hover:bg-blue-950/40 sm:w-fit"
+              >
+                <svg
+                  className="h-5 w-5 shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.02-.7.08-.69.08-.69 1.13.08 1.72 1.16 1.72 1.16 1 .1.76 2.3 3.75 1.61.1-.73.4-1.23.7-1.52-2.47-.28-5.06-1.24-5.06-5.5 0-1.22.44-2.21 1.16-2.99-.12-.28-.5-1.42.11-2.95 0 0 .95-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.1-1.43 3.05-1.14 3.05-1.14.61 1.53.23 2.67.11 2.95.72.78 1.16 1.77 1.16 2.99 0 4.27-2.6 5.22-5.08 5.5.4.35.76 1.02.76 2.06v3.06c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z" />
+                </svg>
+
+                <span className="min-w-0 break-all">
+                  View GPU Quantized Kernels on GitHub
+                </span>
+
+                <span className="ml-auto shrink-0">↗</span>
+              </a>
+            </div>
           </section>
+
           <p>All interactive elements in this article were developed with the assistance of AI to enhance the learning experience.</p>
         </div>
       </article>
