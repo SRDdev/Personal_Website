@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import BlogViewCount from "../../components/BlogViewCount";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -122,6 +123,7 @@ export default function CudaPaddingExperimentPage() {
             <span className="rounded-full border border-gray-200 px-3 py-1 dark:border-zinc-800">CUDA</span>
             <span className="rounded-full border border-gray-200 px-3 py-1 dark:border-zinc-800">FP16 + FP32 accumulate</span>
             <span className="rounded-full border border-gray-200 px-3 py-1 dark:border-zinc-800">Memory systems</span>
+            <BlogViewCount path="/blog/cuda-padding-experiment" />
           </div>
         </header>
 

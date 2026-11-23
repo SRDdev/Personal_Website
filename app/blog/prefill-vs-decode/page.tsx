@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import BlogViewCount from "../../components/BlogViewCount";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -60,6 +61,9 @@ export default function PrefillVsDecodePage() {
             performs two very different jobs: processing the prompt in bulk and
             generating new tokens one at a time.
           </p>
+          <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            <BlogViewCount path="/blog/prefill-vs-decode" />
+          </div>
         </header>
 
         <Figure

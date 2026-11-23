@@ -5,6 +5,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import BlogViewCount from "../../components/BlogViewCount";
 
 function CodeBlock({ children }: { children: React.ReactNode }) {
   return (
@@ -1026,6 +1027,7 @@ export default function QuantizationFundamentalsPage() {
             <span className="rounded-full border border-gray-200 px-3 py-1 dark:border-zinc-800">FP32</span>
             <span className="rounded-full border border-gray-200 px-3 py-1 dark:border-zinc-800">INT8</span>
             <span className="rounded-full border border-gray-200 px-3 py-1 dark:border-zinc-800">Memory coalescing</span>
+            <BlogViewCount path="/blog/quantization-fundamentals" />
           </div>
         </header>
 
