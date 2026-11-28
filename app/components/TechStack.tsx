@@ -4,48 +4,75 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const categories = [
+interface Skill {
+    name: string;
+    slug?: string;
+    iconUrl?: string;
+    badge?: string;
+}
+
+const categories: { name: string; skills: Skill[] }[] = [
     {
-        name: "AI & Vision",
+        name: "GPU Compute & Languages",
+        skills: [
+            { name: "CUDA C++", slug: "nvidia" },
+            {
+                name: "OpenCL",
+                iconUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqCIB1wZAShavowvsPTca-ruCjqxi38r5D0NJ6yCpOYItVTaUDZJ0UZCs&s=10",
+            },
+            { name: "Vulkan", slug: "vulkan" },
+            { name: "Triton", badge: "TR" },
+            { name: "C++", slug: "cplusplus" },
+            { name: "Python", slug: "python" },
+            { name: "SQL", slug: "postgresql" },
+        ]
+    },
+    {
+        name: "Inference Runtimes & Engines",
+        skills: [
+            { name: "TensorRT", slug: "nvidia" },
+            { name: "vLLM", badge: "vL" },
+            { name: "ONNX Runtime", slug: "onnx" },
+            {
+                name: "LiteRT",
+                iconUrl: "https://imgs.search.brave.com/HMzt_1YdW7siNH9R9rB5skA08S6mfqLulyb1ICC77eo/rs:fit:0:180:1:0/g:ce/aHR0cHM6Ly9yYXcu/Z2l0aHVidXNlcmNv/bnRlbnQuY29tL2dv/b2dsZS1haS1lZGdl/L0xpdGVSVC9tYWlu/L2RvY3Mvc291cmNl/cy9saXRlcnRfbG9n/by5wbmc",
+            },
+            {
+                name: "ExecuTorch",
+                iconUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTifKJ3ziEij3E-xK2kNJMrEmgb7jJIblklxBjhJNGGDQ&s=10",
+            },
+            { name: "MLDrift", badge: "MD" },
+        ]
+    },
+    {
+        name: "AI, Vision & Data",
         skills: [
             { name: "PyTorch", slug: "pytorch" },
-            { name: "OpenCV", slug: "opencv" },
             { name: "TensorFlow", slug: "tensorflow" },
             { name: "Hugging Face", slug: "huggingface" },
-            { name: "Scikit-learn", slug: "scikitlearn" },
-        ]
-    },
-    {
-        name: "Agents & Data",
-        skills: [
             { name: "LangChain", slug: "langchain" },
+            { name: "OpenCV", slug: "opencv" },
+            { name: "Scikit-learn", slug: "scikitlearn" },
             { name: "Pandas", slug: "pandas" },
             { name: "NumPy", slug: "numpy" },
-            { name: "Jupyter", slug: "jupyter" },
-            { name: "Anaconda", slug: "anaconda" },
         ]
     },
     {
-        name: "Languages",
+        name: "Profiling & Backend",
         skills: [
-            { name: "Python", slug: "python" },
-            { name: "C++", slug: "cplusplus" },
-            { name: "SQL", slug: "postgresql" },
-            { name: "OpenCL", slug: "opencl"},
-        ]
-    },
-    {
-        name: "Web & Backend",
-        skills: [
+            {
+                name: "Nsight Compute",
+                iconUrl: "https://developer.download.nvidia.com/images/nvidia-nsight-systems-icon-gbp-shaded-256.png",
+            },
             { name: "FastAPI", slug: "fastapi" },
-            { name: "Tailwind", slug: "tailwindcss" },
             { name: "MongoDB", slug: "mongodb" },
         ]
     },
     {
-        name: "Cloud & DevOps",
+        name: "Cloud & Infra",
         skills: [
             { name: "Docker", slug: "docker" },
+            { name: "Kubernetes", slug: "kubernetes" },
             { name: "Google Cloud", slug: "googlecloud" },
             { name: "Linux", slug: "linux" },
             { name: "Git", slug: "git" },
@@ -53,7 +80,7 @@ const categories = [
     }
 ];
 
-const marqueeSkills = categories.flatMap(c => c.skills);
+const marqueeSkills = categories.flatMap(c => c.skills).filter((s): s is Skill => Boolean(s.slug || s.iconUrl));
 
 export function TechStack() {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -86,9 +113,13 @@ export function TechStack() {
                                     <div key={index} className="flex flex-col items-center justify-center gap-2">
                                         <div className="h-10 w-10 transition-all duration-300">
                                             <img
-                                                src={`https://cdn.simpleicons.org/${tech.slug}`}
+                                                src={tech.iconUrl ?? `https://cdn.simpleicons.org/${tech.slug}`}
                                                 alt={tech.name}
-                                                className="h-full w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300 brightness-0 hover:brightness-100 dark:brightness-0 dark:invert dark:hover:invert-0 dark:hover:brightness-100"
+                                                className={`h-full w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300 ${
+                                                    tech.iconUrl
+                                                        ? "grayscale hover:grayscale-0 rounded-sm"
+                                                        : "brightness-0 hover:brightness-100 dark:brightness-0 dark:invert dark:hover:invert-0 dark:hover:brightness-100"
+                                                }`}
                                                 loading="lazy"
                                             />
                                         </div>
@@ -100,9 +131,13 @@ export function TechStack() {
                                     <div key={index + marqueeSkills.length} className="flex flex-col items-center justify-center gap-2">
                                         <div className="h-10 w-10 transition-all duration-300">
                                             <img
-                                                src={`https://cdn.simpleicons.org/${tech.slug}`}
+                                                src={tech.iconUrl ?? `https://cdn.simpleicons.org/${tech.slug}`}
                                                 alt={tech.name}
-                                                className="h-full w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300 brightness-0 hover:brightness-100 dark:brightness-0 dark:invert dark:hover:invert-0 dark:hover:brightness-100"
+                                                className={`h-full w-full object-contain opacity-80 hover:opacity-100 transition-all duration-300 ${
+                                                    tech.iconUrl
+                                                        ? "grayscale hover:grayscale-0 rounded-sm"
+                                                        : "brightness-0 hover:brightness-100 dark:brightness-0 dark:invert dark:hover:invert-0 dark:hover:brightness-100"
+                                                }`}
                                                 loading="lazy"
                                             />
                                         </div>
@@ -132,13 +167,23 @@ export function TechStack() {
                                                 key={skill.name}
                                                 className="group flex items-center gap-3 rounded-lg border border-transparent p-2 transition-all hover:border-gray-100 dark:hover:border-zinc-800 hover:bg-gray-50/50 dark:hover:bg-zinc-900/50"
                                             >
-                                                <div className="h-5 w-5 shrink-0 transition-all duration-300">
-                                                    <img
-                                                        src={`https://cdn.simpleicons.org/${skill.slug}`}
-                                                        alt={skill.name}
-                                                        className="h-full w-full object-contain opacity-50 group-hover:opacity-100 transition-all duration-300 brightness-0 group-hover:brightness-100 dark:brightness-0 dark:invert dark:group-hover:invert-0 dark:group-hover:brightness-100"
-                                                        loading="lazy"
-                                                    />
+                                                <div className="h-5 w-5 shrink-0 transition-all duration-300 flex items-center justify-center">
+                                                    {skill.iconUrl || skill.slug ? (
+                                                        <img
+                                                            src={skill.iconUrl ?? `https://cdn.simpleicons.org/${skill.slug}`}
+                                                            alt={skill.name}
+                                                            className={`h-full w-full object-contain opacity-50 group-hover:opacity-100 transition-all duration-300 ${
+                                                                skill.iconUrl
+                                                                    ? "grayscale group-hover:grayscale-0 rounded-sm"
+                                                                    : "brightness-0 group-hover:brightness-100 dark:brightness-0 dark:invert dark:group-hover:invert-0 dark:group-hover:brightness-100"
+                                                            }`}
+                                                            loading="lazy"
+                                                        />
+                                                    ) : (
+                                                        <span className="flex h-5 w-5 items-center justify-center rounded bg-gray-200 font-mono text-[9px] font-bold text-gray-700 group-hover:bg-black group-hover:text-white dark:bg-zinc-800 dark:text-gray-300 dark:group-hover:bg-white dark:group-hover:text-black transition-colors">
+                                                            {skill.badge}
+                                                        </span>
+                                                    )}
                                                 </div>
                                                 <span className="text-sm font-medium text-gray-500 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
                                                     {skill.name}

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRight, BookOpen } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, BookOpen } from "lucide-react";
 
 // --- Types ---
 interface BlogPost {
@@ -14,6 +15,13 @@ interface BlogPost {
 
 // --- Fallback Data (Matches your provided Medium links) ---
 const FALLBACK_POSTS: BlogPost[] = [
+  {
+    title: "The Hidden Cost of 4-Bit Weights",
+    excerpt: "Sub-byte INT4 packing, branchless sign extension, __dp4a widened accumulation, and why naive W4A16 GEMV runs slower than FP32 on an RTX 3060.",
+    date: "Nov 28, 2026",
+    image: "/blog/low-precision-and-packing/Inference Acceleration.png",
+    link: "/blog/low-precision-and-packing"
+  },
   {
     title: "What One Quantization Thread Actually Does",
     excerpt: "A first-principles CUDA walkthrough of FP32 to INT8 quantization, dequantization, numerical error, and RTX 3060 performance.",
@@ -84,7 +92,7 @@ function getMediumImage(item: any): string {
   return candidates.find((candidate) => candidate?.trim()) || "/projects/default.svg";
 }
 
-export function BlogSection() {
+export function BlogSection({ limit = 4, showHeader = true }: { limit?: number; showHeader?: boolean }) {
   const [posts, setPosts] = useState<BlogPost[]>(FALLBACK_POSTS);
 
   // --- Auto-Fetch Logic ---
@@ -142,28 +150,26 @@ export function BlogSection() {
     fetchMediumPosts();
   }, []);
 
+  const displayedPosts = limit > 0 ? posts.slice(0, limit) : posts;
+  const hasMore = limit > 0 && posts.length > limit;
+
   return (
     <div className="mb-16 w-full text-justify">
-      <h2 className="mb-6 text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors duration-200">
-        Writings & Blogs
-      </h2>
+      {showHeader && (
+        <>
+          <h2 className="mb-6 text-2xl font-extrabold uppercase tracking-widest text-black dark:text-white hover:text-gray-500 dark:hover:text-gray-400 transition-colors duration-200">
+            Writings & Blogs
+          </h2>
 
-      <p className="mb-8 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-        I host my thoughts on{" "}
-        <a
-          href="https://medium.com/@srddev"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-black dark:text-white underline underline-offset-4 transition-colors hover:text-gray-600 dark:hover:text-gray-300"
-        >
-          Medium
-        </a>{" "}
-        to share insights on AI systems, product strategy, and technical architecture.
-      </p>
+          <p className="mb-8 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+            I write here on my site to share deep dives on CUDA kernels, inference engineering, and AI systems.
+          </p>
+        </>
+      )}
 
       {/* Grid Layout mimicking the Video Section Style */}
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-        {posts.map((post, index) => (
+        {displayedPosts.map((post, index) => (
           <a
             key={`${post.link}-${index}`}
             href={post.link}
@@ -213,6 +219,20 @@ export function BlogSection() {
           </a>
         ))}
       </div>
+
+      {hasMore && (
+        <div className="mt-8 flex flex-col items-start gap-3">
+          <Link
+            href="/blog"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-black dark:bg-gray-100 dark:text-black dark:hover:bg-white"
+          >
+            View all writings &amp; blogs <ArrowRight className="h-4 w-4" />
+          </Link>
+          <p className="text-xs text-gray-500 dark:text-gray-500">
+            Showing the latest {displayedPosts.length} of {posts.length} posts.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

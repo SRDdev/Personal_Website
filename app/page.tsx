@@ -516,7 +516,7 @@ export default function Home() {
               </h2>
 
               <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
-                I specialize in bridging the gap between advanced research and production-grade infrastructure. While I am adaptable across the stack, I focus on architecting deterministic agentic systems and high-precision perception pipelines.
+                I specialize in bridging the gap between ML research and low-latency production inference. While adaptable across the stack, I focus on custom CUDA kernels, sub-byte quantization, and high-throughput serving pipelines.
               </p>
               <TechStack />
             </div>
